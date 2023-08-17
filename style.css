@@ -1,0 +1,201 @@
+/* === Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500&family=Space+Grotesk:wght@300;700&display=swap');
+
+/* === Variables === */
+:root {
+    --primary: #FF8000;
+    --secondary: #000;
+    --background: #FFF;
+    --titles: rgba(0,0,0, 0.15);
+    --sub-titles: rgba(0,0,0,0.3);
+    --headings: 'Space Grotesk', sans-serif;
+    --text: 'Noto Sans', sans-serif;
+}
+
+/* === CSS Reset === */
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html, body {
+    background: var(--background);
+    overflow-y: hidden;
+}
+
+
+/* === Global Styles === */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--headings);
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 64px;
+    color: var(--primary);
+    width: 100%;
+    background: linear-gradient(180deg, transparent 0%, var(--background) 100%);
+    padding: 63px 0px 25px 40px;
+}
+
+h2 {
+    font-size: 48px;
+    color: var(--primary);
+}
+
+h3 {
+    font-size: 128px;
+    color: var(--titles);
+    transform: rotate(7deg);
+}
+
+h4 {
+    font-size: 24px;
+    color: var(--sub-titles);
+}
+
+p {
+    font-family: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+a {
+    text-decoration: none;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* === Header === */
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+}
+
+nav {
+    width: 305px;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+button {
+    background: transparent;
+    border: none;
+    width: 50px;
+    height: 27px;
+    margin-top: 25px;
+    margin-left: 40px;
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+}
+
+ul {
+    width: 0px;
+    height: 100vh;
+    background: var(--background);
+    overflow: hidden;
+    list-style-type: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 120px 0px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    transition: width 0.25s, padding 0.25s;
+    z-index: 1;
+}
+
+ul li, ul a {
+    font-family: var(--headings);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--secondary);
+    min-width: 225px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+ul a:hover {
+    color: var(--primary);
+}
+
+img {
+    margin-top: 25px;
+    margin-right: 40px;
+}
+
+/* Burger Menu Animations */
+button .lines {
+    width: 100%;
+    height: 5px;
+    background: var(--secondary);
+    position: absolute;
+    left: 0px;
+    transform: rotate(0deg);
+    transition: transform 0.25s 0s, top 0.25s 0.25s, bottom 0.25s 0.25s;
+    transition-timing-function: ease-out;
+}
+
+nav.active button .lines {
+    transition: transform 0.25s 0.25s, top 0.25s 0s, bottom 0.25s 0s;
+}
+
+#one {
+    top: 0px;
+}
+
+#two {
+    top: calc(50% - 2.5px);
+}
+
+#three {
+    bottom: 0px;
+}
+
+nav.active #one {
+    top: calc(50% - 2.5px);
+    transform: rotate(220deg);
+}
+
+nav.active #two,
+nav.active #three {
+    transform: rotate(-220deg);
+}
+
+nav.active #three {
+    bottom: calc(50% - 2.5px);
+}
+
+nav.active ul {
+    width: 100%;
+    padding: 120px 40px;
+}
+
+nav.active li, nav.active a {
+    opacity: 1;
+}
+
+/* === Hero Section === */
+#hero {
+    display: flex;
+    flex-direction: column-reverse;
+    background-image: url("./assets/hero/mclaren-hero.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
