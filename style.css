@@ -10,6 +10,7 @@
     --sub-titles: rgba(0,0,0,0.3);
     --headings: 'Space Grotesk', sans-serif;
     --text: 'Noto Sans', sans-serif;
+    --page-width: calc(400vw + 6016px); /* 400vw = 4 sections of 100vw, 5016px = championships, 1000px = 200px space between each section */
 }
 
 /* === CSS Reset === */
@@ -47,6 +48,9 @@ h3 {
     font-size: 128px;
     color: var(--titles);
     transform: rotate(7deg);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
 }
 
 h4 {
@@ -65,16 +69,55 @@ a {
     text-decoration: none;
 }
 
+.content-line {
+    width: 100%;
+    height: 3px;
+    display: block;
+    background: var(--primary);
+    margin-top: 65px;
+}
+
+/* === Horizontal Scroll */
+body {
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(-90deg) translateX(-100vh);
+    transform-origin: top left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+main, header {
+    transform: rotate(90deg) translateY(-100vh);
+    transform-origin: top left;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+    width: var(--page-width);
+    background: linear-gradient(90deg, #FFF 80%, #F8F8F8 20%);
+}
+
 section {
     width: 100vw;
     height: 100vh;
+    position: relative;
 }
 
 /* === Header === */
 header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    width: var(--page-width);
+    height: 90px;
+    display: block;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -86,6 +129,7 @@ nav {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    display: inline-block;
 }
 
 button {
@@ -128,13 +172,45 @@ ul li, ul a {
     transition: opacity 0.5s;
 }
 
+ul a {
+    position: relative;
+}
+
+ul a::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 0px;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.5s;
+}
+
 ul a:hover {
     color: var(--primary);
 }
 
-img {
+ul a:hover::after {
+    width: 100%;
+}
+
+#logo {
+    --scroll: 40px;
     margin-top: 25px;
     margin-right: 40px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: max(calc(100vw - 595px), var(--scroll));
+}
+
+#header-line {
+    width: calc(100vw - 338px);
+    height: 3px;
+    background: var(--primary);
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
 }
 
 /* Burger Menu Animations */
@@ -196,6 +272,112 @@ nav.active li, nav.active a {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 100vw;
+}
+
+/* === How It Started & The First Win === */
+.content {
+    width: 100%;
     height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 138px;
+    padding-left: 40px;
+    display: flex;
+    gap: 170px;
+    box-sizing: border-box;
+}
+
+.text-content {
+    width: 310px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.text-content h2 {
+    margin-bottom: 36px;
+}
+
+.text-content p {
+    margin-bottom: 15px;
+}
+
+.content .images {
+    position: relative;
+    flex-grow: 1;
+}
+
+.content img {
+    object-fit: cover;
+    position: absolute;
+    box-shadow: 0px 0px 60px -20px grey;
+}
+
+.forward-image {
+    width: 500px;
+    height: 500px;
+    top: calc(50% - 250px);
+    left: 0px;
+    z-index: 2;
+}
+
+.background-image {
+    width: 50vw;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+}
+
+/* === Championships === */
+#championships {
+    min-width: 5016px;
+    background: linear-gradient(90deg, var(--background) 0%, #F8F8F8 100%);
+}
+
+.championship-year {
+    width: 345px;
+    height: auto;
+    display: inline-block;
+    padding: 0px 35px;
+    margin-top: 130px;
+    border-left: solid 3px var(--primary);
+    vertical-align: top;
+}
+
+.championship-year:first-of-type {
+    border-left: none;
+}
+
+.championship-year h4 {
+    margin-bottom: 35px;
+}
+
+.championship-year p {
+    margin-bottom: 15px;
+}
+
+.championship-year p:last-of-type {
+    margin-bottom: 0px;
+}
+
+.championship-year img {
+    margin-top: 20px;
+}
+
+.championship-year:nth-of-type(even) img {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.championship-year:nth-of-type(even) h2 {
+    margin-top: 35px;
+}
+
+.championship-year:nth-of-type(even) h4 {
+    margin-top: 0px;
+}
+
+/* === Current Drivers === */
+#current-drivers {
+    background: #F8F8F8;
 }

@@ -9,3 +9,18 @@ burger_menu_button.onclick = function() {
         burder_menu_container.classList.add("active");
     }
 }
+
+// === Track Scoll Position ===
+const logo = document.querySelector("#logo");
+
+const body = document.querySelector("body");
+body.addEventListener("scroll", function(event) {
+    const scroll = event.target.scrollTop;
+    logo_position(scroll);
+});
+
+// === Adjust Logo Position ===
+function logo_position(scroll) {
+    const scroll_pos = scroll + 40 - 305; // scroll + margin-left - nav width 
+    logo.style.setProperty("--scroll", `${scroll_pos}px`);
+}
