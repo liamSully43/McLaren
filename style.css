@@ -10,7 +10,14 @@
     --sub-titles: rgba(0,0,0,0.3);
     --headings: 'Space Grotesk', sans-serif;
     --text: 'Noto Sans', sans-serif;
-    --page-width: calc(400vw + 6016px); /* 400vw = 4 sections of 100vw, 5016px = championships, 1000px = 200px space between each section */
+    /* update section widths here to automaticaly update the widths of the header & main elements */
+    --hero: 100vw;
+    --how-it-started: 100vw;
+    --the-first-win: 100vw;
+    --championships: 5016px;
+    --current-drivers: 100vw;
+    --section-spacing: 200px;
+    --page-width: calc(var(--hero) + var(--how-it-started) + var(--the-first-win) + var(--championships) + var(--current-drivers) + (var(--section-spacing) * 4));
 }
 
 /* === CSS Reset === */
@@ -102,13 +109,12 @@ main, header {
 main {
     display: flex;
     flex-direction: row;
-    gap: 200px;
+    gap: var(--section-spacing);
     width: var(--page-width);
     background: linear-gradient(90deg, #FFF 80%, #F8F8F8 20%);
 }
 
 section {
-    width: 100vw;
     height: 100vh;
     position: relative;
 }
@@ -266,6 +272,7 @@ nav.active li, nav.active a {
 
 /* === Hero Section === */
 #hero {
+    width: var(--hero);
     display: flex;
     flex-direction: column-reverse;
     background-image: url("./assets/hero/mclaren-hero.jpg");
@@ -275,6 +282,14 @@ nav.active li, nav.active a {
 }
 
 /* === How It Started & The First Win === */
+#how-it-started {
+    width: var(--how-it-started);
+}
+
+#the-first-win {
+    width: var(--the-first-win);
+}
+
 .content {
     width: 100%;
     height: 100vh;
@@ -330,7 +345,7 @@ nav.active li, nav.active a {
 
 /* === Championships === */
 #championships {
-    min-width: 5016px;
+    min-width: var(--championships);
     background: linear-gradient(90deg, var(--background) 0%, #F8F8F8 100%);
 }
 
@@ -379,5 +394,6 @@ nav.active li, nav.active a {
 
 /* === Current Drivers === */
 #current-drivers {
+    width: var(--current-drivers);
     background: #F8F8F8;
 }
