@@ -40,10 +40,15 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 64px;
-    color: var(--primary);
+    color: var(--secondary);
     width: 100%;
     background: linear-gradient(180deg, transparent 0%, var(--background) 100%);
-    padding: 63px 0px 25px 40px;
+    padding: 63px 0px 25px 0px;
+}
+
+h1 span {
+    color: var(--primary);
+    display: block;
 }
 
 h2 {
@@ -135,7 +140,6 @@ nav {
     width: 305px;
     height: 100vh;
     position: relative;
-    overflow: hidden;
     display: inline-block;
 }
 
@@ -155,6 +159,7 @@ ul {
     width: 0px;
     height: 100vh;
     background: var(--background);
+    box-shadow: 0px 0px 60px -20px grey;
     overflow: hidden;
     list-style-type: none;
     position: absolute;
@@ -275,11 +280,48 @@ nav.active li, nav.active a {
 #hero {
     width: var(--hero);
     display: flex;
-    flex-direction: column-reverse;
-    background-image: url("./assets/hero/mclaren-hero.jpg");
+    gap: 90px;
+    align-items: center;
+}
+
+#hero-content {
+    width: 455px;
+    padding-left: 40px;
+}
+
+#hero-content p {
+    margin-bottom: 15px;
+}
+
+#hero-content p:last-of-type {
+    margin-bottom: 0px;
+}
+
+#hero-image {
+    flex-grow: 1;
+    height: 100vh;
+    background-image: url("./assets/hero/mclaren-2023-car.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
+}
+
+#hero-image .image-faders {
+    width: 215px;
+    height: 100%;
+    background: linear-gradient(270deg, transparent 0%, var(--background) 100%);
+    position: absolute;
+    top: 0px;
+}
+
+#hero-image .fade-one {
+    left: 0px;
+}
+
+#hero-image .fade-two {
+    right: 0px;
+    transform: rotate(180deg);
 }
 
 /* === How It Started & The First Win === */
