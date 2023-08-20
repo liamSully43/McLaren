@@ -14,8 +14,8 @@
     --hero: 100vw;
     --how-it-started: 100vw;
     --the-first-win: 100vw;
-    --championships: 5016px;
-    --current-drivers: 100vw;
+    --championships: 5057px;
+    --current-drivers: 2880px;
     --section-spacing: 200px;
     --page-width: calc(var(--hero) + var(--how-it-started) + var(--the-first-win) + var(--championships) + var(--current-drivers) + (var(--section-spacing) * 4));
 }
@@ -95,6 +95,7 @@ body {
     position: absolute;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
@@ -111,7 +112,7 @@ main {
     flex-direction: row;
     gap: var(--section-spacing);
     width: var(--page-width);
-    background: linear-gradient(90deg, #FFF 80%, #F8F8F8 20%);
+    background: linear-gradient(90deg, #FFF 70%, #F8F8F8 30%);
 }
 
 section {
@@ -396,4 +397,23 @@ nav.active li, nav.active a {
 #current-drivers {
     width: var(--current-drivers);
     background: #F8F8F8;
+    padding-right: 40px;
+}
+
+#current-drivers .background-image {
+    width: 50vw;
+    height: 100%;
+    top: 0px;
+    right: calc(50% - 480px);
+}
+
+#current-drivers .second-driver {
+    left: unset;
+    right: 0px;
+}
+
+#end-logo {
+    position: absolute;
+    bottom: 25px;
+    right: 40px;
 }
