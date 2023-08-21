@@ -90,6 +90,7 @@ a {
 }
 
 /* === Horizontal Scroll */
+/*
 body {
     width: 100vh;
     height: 100vw;
@@ -98,9 +99,27 @@ body {
     overflow-y: scroll;
     overflow-x: hidden;
     position: absolute;
-    scrollbar-width: none;
+    scrollbar-width: 15px;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+*/
+
+body {
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(-90deg) translateX(-100vh);
+    transform-origin: top left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    scroll-behavior: smooth;
+    scrollbar-width: 15px;
+    -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
@@ -460,6 +479,10 @@ nav.active li, nav.active a {
     width: var(--current-drivers);
     background: #F8F8F8;
     padding-right: 40px;
+}
+
+#current-drivers .images {
+    overflow: hidden;
 }
 
 #current-drivers .background-image {
