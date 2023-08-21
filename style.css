@@ -12,8 +12,8 @@
     --text: 'Noto Sans', sans-serif;
     /* update section widths here to automaticaly update the widths of the header & main elements */
     --hero: 100vw;
-    --how-it-started: 100vw;
-    --the-first-win: 100vw;
+    --how-it-started: 1900px;
+    --the-first-win: 1900px;
     --championships: 5057px;
     --current-drivers: 2880px;
     --section-spacing: 200px;
@@ -379,7 +379,7 @@ nav.active li, nav.active a {
 }
 
 .background-image {
-    width: 50vw;
+    width: calc(100% - 440px);
     height: 100%;
     top: 0px;
     right: 0px;
@@ -394,20 +394,39 @@ nav.active li, nav.active a {
 
 .championship-year {
     width: 345px;
-    height: auto;
+    height: 765px;
     display: inline-block;
     padding: 0px 35px;
     margin-top: 130px;
     border-left: solid 3px var(--primary);
     vertical-align: top;
+    position: relative;
+}
+
+.championship-year.auto-height {
+    height: auto;
 }
 
 .championship-year:first-of-type {
     border-left: none;
 }
 
-.championship-year h4 {
+.championship-year .title-container {
     margin-bottom: 35px;
+}
+
+.championship-year:nth-of-type(even) .title-container {
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.championship-year.auto-height .title-container {
+    position: unset;
+}
+
+.championship-year.auto-height:nth-of-type(even) .title-container {
+    margin-top: 35px;
 }
 
 .championship-year p {
@@ -422,17 +441,18 @@ nav.active li, nav.active a {
     margin-top: 20px;
 }
 
+.championship-year:nth-of-type(odd) img {
+    position: absolute;
+    bottom: 0px;
+}
+
+.championship-year.auto-height img {
+    position: unset;
+}
+
 .championship-year:nth-of-type(even) img {
     margin-top: 0px;
     margin-bottom: 20px;
-}
-
-.championship-year:nth-of-type(even) h2 {
-    margin-top: 35px;
-}
-
-.championship-year:nth-of-type(even) h4 {
-    margin-top: 0px;
 }
 
 /* === Current Drivers === */
@@ -443,10 +463,10 @@ nav.active li, nav.active a {
 }
 
 #current-drivers .background-image {
-    width: 50vw;
+    width: calc(100% - 880px);
     height: 100%;
     top: 0px;
-    right: calc(50% - 480px);
+    right: calc(50% - ((100% - 880px) / 2)); /* 50% of the parent's width minus half the image's width */
 }
 
 #current-drivers .second-driver {
