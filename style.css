@@ -6,15 +6,15 @@
     --primary: #FF8000;
     --secondary: #000;
     --background: #FFF;
-    --titles: rgba(0,0,0, 0.15);
+    --titles: #D9D9D9;
     --sub-titles: rgba(0,0,0,0.3);
     --headings: 'Space Grotesk', sans-serif;
     --text: 'Noto Sans', sans-serif;
     /* update section widths here to automaticaly update the widths of the header & main elements */
     --hero: 100vw;
-    --how-it-started: 1900px;
-    --the-first-win: 1900px;
-    --championships: 5057px;
+    --how-it-started: 100vw;
+    --the-first-win: 100vw;
+    --championships: 481vh;
     --current-drivers: 2880px;
     --section-spacing: 200px;
     --page-width: calc(var(--hero) + var(--how-it-started) + var(--the-first-win) + var(--championships) + var(--current-drivers) + (var(--section-spacing) * 4));
@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: 64px;
+    font-size: 7vh; /* 64px */
     color: var(--secondary);
     width: 100%;
     background: linear-gradient(180deg, transparent 0%, var(--background) 100%);
@@ -52,12 +52,12 @@ h1 span {
 }
 
 h2 {
-    font-size: 48px;
+    font-size: 5vh; /* 48px */
     color: var(--primary);
 }
 
 h3 {
-    font-size: 128px;
+    font-size: 13.3vh; /* 128px */
     color: var(--titles);
     transform: rotate(7deg);
     position: absolute;
@@ -66,13 +66,13 @@ h3 {
 }
 
 h4 {
-    font-size: 24px;
+    font-size: 2.5vh; /* 24px */
     color: var(--sub-titles);
 }
 
 p {
     font-family: var(--text);
-    font-size: 16px;
+    font-size: 1.7vh; /* 16px */
     font-weight: 500;
     color: var(--secondary);
 }
@@ -90,25 +90,6 @@ a {
 }
 
 /* === Horizontal Scroll */
-/*
-body {
-    width: 100vh;
-    height: 100vw;
-    transform: rotate(-90deg) translateX(-100vh);
-    transform-origin: top left;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    position: absolute;
-    scrollbar-width: 15px;
-    -ms-overflow-style: none;
-    scroll-behavior: smooth;
-}
-
-::-webkit-scrollbar {
-    display: none;
-}
-*/
-
 body {
     width: 100vh;
     height: 100vw;
@@ -142,6 +123,48 @@ main {
 section {
     height: 100vh;
     position: relative;
+}
+
+/* fade animations */
+.fade-in {
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.fade-in.animate {
+    animation: fade_in 2s forwards;
+}
+
+@keyframes fade_in {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+/* a different animation is needed for titles due to the transform/rotate styling used */
+h3.fade-in {
+    transform: rotate(7deg) translateY(30px);
+    opacity: 0;
+}
+
+h3.fade-in.animate {
+    animation: fade_in_title 2s 1s forwards;
+}
+
+@keyframes fade_in_title {
+    0% {
+        transform: rotate(7deg) translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(7deg) translateY(0px);
+        opacity: 1;
+    }
 }
 
 /* === Header === */
@@ -304,7 +327,7 @@ nav.active li, nav.active a {
 }
 
 #hero-content {
-    width: 455px;
+    width: 47.3vh; /* 455px */
     padding-left: 40px;
 }
 
@@ -355,8 +378,8 @@ nav.active li, nav.active a {
 .content {
     width: 100%;
     height: 100vh;
-    padding-top: 120px;
-    padding-bottom: 138px;
+    padding-top: 14vh; /* 120px */
+    padding-bottom: 16vh; /* 138px */
     padding-left: 40px;
     display: flex;
     gap: 170px;
@@ -364,7 +387,7 @@ nav.active li, nav.active a {
 }
 
 .text-content {
-    width: 310px;
+    width: 35.8vh; /* 310px */
     position: relative;
     display: grid;
     place-items: center;
@@ -390,16 +413,18 @@ nav.active li, nav.active a {
 }
 
 .forward-image {
-    width: 500px;
-    height: 500px;
-    top: calc(50% - 250px);
+    --size: 57.7vh;  /* 500px */
+    width: var(--size);
+    height: var(--size);
+    top: calc(50% - (var(--size) / 2));
     left: 0px;
     z-index: 2;
 }
 
 .background-image {
-    width: calc(100% - 440px);
+    /*width: calc(100% - 50.7vh); /* 440px */
     height: 100%;
+    aspect-ratio: 179 / 135;
     top: 0px;
     right: 0px;
     z-index: 1;
@@ -412,14 +437,13 @@ nav.active li, nav.active a {
 }
 
 .championship-year {
-    width: 345px;
-    height: 765px;
+    width: 28.3vh; /* 345px */
+    height: 79.5vh; /* 765px */
     display: inline-block;
     padding: 0px 35px;
     margin-top: 130px;
     border-left: solid 3px var(--primary);
     vertical-align: top;
-    position: relative;
 }
 
 .championship-year.auto-height {
@@ -458,6 +482,9 @@ nav.active li, nav.active a {
 
 .championship-year img {
     margin-top: 20px;
+    width: 28.3vh;
+    aspect-ratio: 69/35;
+    object-fit: cover;
 }
 
 .championship-year:nth-of-type(odd) img {
@@ -481,7 +508,7 @@ nav.active li, nav.active a {
     padding-right: 40px;
 }
 
-#current-drivers .images {
+#current-drivers .content {
     overflow: hidden;
 }
 

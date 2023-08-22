@@ -27,7 +27,7 @@ function logo_position(scroll) {
     logo.style.setProperty("--scroll", `${scroll_pos}px`);
 }
 
-// === Adjust Image Position ===
+// === Adjust Image Positions ===
 const sections = document.querySelectorAll(".parallax-images");
 function image_positioning(scroll, start_point, section_index) {
     // calculate how much the images should parallax scroll
@@ -46,3 +46,20 @@ function image_positioning(scroll, start_point, section_index) {
         imgs[2].style.transform = `translateX(${0 - pos1}px)`;
     }
 }
+
+// === Add Fade Animations ===
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      // If the championship is visible
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate");
+        observer.unobserve(entry.target);
+      }
+    });
+}, { rootMargin: "-15%" });
+
+const elements = document.querySelectorAll(".fade-in");
+elements.forEach(element => observer.observe(element));
+//for(let element of elements) {
+//    observer.observe(element);
+//}
