@@ -12,10 +12,10 @@
     --text: 'Noto Sans', sans-serif;
     /* update section widths here to automaticaly update the widths of the header & main elements */
     --hero: 100vw;
-    --how-it-started: 100vw;
-    --the-first-win: 100vw;
-    --championships: 481vh;
-    --current-drivers: 2880px;
+    --how-it-started: 200vh;
+    --the-first-win: 200vh;
+    --championships: 438vh;
+    --current-drivers: 300vh;
     --section-spacing: 200px;
     --page-width: calc(var(--hero) + var(--how-it-started) + var(--the-first-win) + var(--championships) + var(--current-drivers) + (var(--section-spacing) * 4));
 }
@@ -422,9 +422,7 @@ nav.active li, nav.active a {
 }
 
 .background-image {
-    /*width: calc(100% - 50.7vh); /* 440px */
     height: 100%;
-    aspect-ratio: 179 / 135;
     top: 0px;
     right: 0px;
     z-index: 1;
@@ -440,8 +438,8 @@ nav.active li, nav.active a {
     width: 28.3vh; /* 345px */
     height: 79.5vh; /* 765px */
     display: inline-block;
-    padding: 0px 35px;
-    margin-top: 130px;
+    padding: 0px 3.6vh; /* 35px */
+    margin-top: 13.5vh; /* 130px */
     border-left: solid 3px var(--primary);
     vertical-align: top;
 }
@@ -455,7 +453,7 @@ nav.active li, nav.active a {
 }
 
 .championship-year .title-container {
-    margin-bottom: 35px;
+    margin-bottom: 3.6vh; /* 35px */
 }
 
 .championship-year:nth-of-type(even) .title-container {
@@ -469,11 +467,11 @@ nav.active li, nav.active a {
 }
 
 .championship-year.auto-height:nth-of-type(even) .title-container {
-    margin-top: 35px;
+    margin-top: 3.6vh; /* 35px */
 }
 
 .championship-year p {
-    margin-bottom: 15px;
+    margin-bottom: 1.5vh; /* 15px */
 }
 
 .championship-year p:last-of-type {
@@ -481,7 +479,7 @@ nav.active li, nav.active a {
 }
 
 .championship-year img {
-    margin-top: 20px;
+    margin-top: 2vh; /* 20px */
     width: 28.3vh;
     aspect-ratio: 69/35;
     object-fit: cover;
@@ -498,7 +496,7 @@ nav.active li, nav.active a {
 
 .championship-year:nth-of-type(even) img {
     margin-top: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 2vh; /* 20px */
 }
 
 /* === Current Drivers === */
@@ -513,10 +511,9 @@ nav.active li, nav.active a {
 }
 
 #current-drivers .background-image {
-    width: calc(100% - 880px);
     height: 100%;
     top: 0px;
-    right: calc(50% - ((100% - 880px) / 2)); /* 50% of the parent's width minus half the image's width */
+    right: calc(50% - 380px); /* 50% of the parent's width minus half the image's width */
 }
 
 #current-drivers .second-driver {

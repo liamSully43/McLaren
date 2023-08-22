@@ -15,9 +15,9 @@ const body = document.querySelector("body");
 body.addEventListener("scroll", function(event) {
     const scroll = event.target.scrollTop;
     logo_position(scroll);
-    image_positioning(scroll, 2100, 0); // how it started
-    image_positioning(scroll, 4200, 1); // the first win
-    image_positioning(scroll, 12000, 2); // current drivers
+    image_positioning(scroll, 0); // how it started
+    image_positioning(scroll, 1); // the first win
+    image_positioning(scroll, 2); // current drivers
 });
 
 // === Adjust Logo Position ===
@@ -28,22 +28,38 @@ function logo_position(scroll) {
 }
 
 // === Adjust Image Positions ===
-const sections = document.querySelectorAll(".parallax-images");
-function image_positioning(scroll, start_point, section_index) {
+const parallax_images = document.querySelectorAll(".parallax-images");
+const sections = document.querySelectorAll("section");
+function image_positioning(scroll, section_index) {
+    // get the previous sections' total widths
+    let start_point = 0;
+    let section_count = 0;
+    for(let section of sections) { // loop through and add up the scroll widths of all preceding sections 
+        if(section == parallax_images[section_index]) {
+            break;
+        }
+        else {
+            start_point += section.scrollWidth;
+            section_count++;
+        }
+    }
+
+    start_point += (section_count * 200);
+
     // calculate how much the images should parallax scroll
     const diff = scroll - start_point;
     const pos1 = diff * 0.2;
     const pos2 = diff * 0.01;
 
     // apply the parallax scroll to the images
-    const imgs = sections[section_index].querySelectorAll("img");
+    const imgs = parallax_images[section_index].querySelectorAll("img");
     // translateX(0px)
     imgs[0].style.transform = `translateX(${0 - pos1}px)`;
     imgs[1].style.transform = `translateX(${0 - pos2}px)`;
 
     // only applies to 'current drivers' section
     if(imgs[2]) {
-        imgs[2].style.transform = `translateX(${0 - pos1}px)`;
+        imgs[2].style.transform = `translateX(${100 - pos1}px)`;
     }
 }
 
@@ -60,6 +76,3 @@ const observer = new IntersectionObserver(entries => {
 
 const elements = document.querySelectorAll(".fade-in");
 elements.forEach(element => observer.observe(element));
-//for(let element of elements) {
-//    observer.observe(element);
-//}
