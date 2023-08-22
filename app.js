@@ -1,7 +1,9 @@
 // === Toggle Burger Menu ===
 const burger_menu_button = document.querySelector("#burger-menu");
 const burder_menu_container = document.querySelector("#burger-menu-container");
-burger_menu_button.onclick = function() {
+burger_menu_button.onclick = toggle_burger_menu;
+
+function toggle_burger_menu() {
     if(burder_menu_container.classList.contains("active")) {
         burder_menu_container.classList.remove("active");
     }
@@ -10,14 +12,27 @@ burger_menu_button.onclick = function() {
     }
 }
 
-// === Track Scoll Position ===
+// === Close Burger Menu On Scroll ===
 const body = document.querySelector("body");
+body.addEventListener("scroll", check_for_scroll);
+document.addEventListener("scroll", check_for_scroll);
+
+function check_for_scroll() {
+    if(burder_menu_container.classList.contains("active")) {
+        burder_menu_container.classList.remove("active");
+    }
+}
+
+
+// === Track Scoll Position (Desktop & Tablet Only) ===
 body.addEventListener("scroll", function(event) {
-    const scroll = event.target.scrollTop;
-    logo_position(scroll);
-    image_positioning(scroll, 0); // how it started
-    image_positioning(scroll, 1); // the first win
-    image_positioning(scroll, 2); // current drivers
+    if(window.innerWidth > 768) {
+        const scroll = event.target.scrollTop;
+        logo_position(scroll);
+        image_positioning(scroll, 0); // how it started
+        image_positioning(scroll, 1); // the first win
+        image_positioning(scroll, 2); // current drivers
+    }
 });
 
 // === Adjust Logo Position ===
